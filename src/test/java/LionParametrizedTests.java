@@ -12,22 +12,18 @@ import java.util.List;
 
 @RunWith(Parameterized.class)
 public class LionParametrizedTests {
+    private final String sex;
+    private final boolean expectHasMane;
+    private final List<String> expectFoodList;
 
-    @Before
-    public void init() {
-        MockitoAnnotations.initMocks(this);
-    }
+    private int expectDefaultKittensCount = 1;
 
-    public final String sex;
-    public final boolean hasMane;
-    List<String> expectFoodList;
-
-    public LionParametrizedTests(String sex, boolean hasMane, List<String> expectFoodList){
+    public LionParametrizedTests(String sex, boolean expectHasMane, List<String> expectFoodList){
         this.sex = sex;
-        this.hasMane = hasMane;
+        this.expectHasMane = expectHasMane;
         this.expectFoodList = expectFoodList;
-
     }
+
     @Parameterized.Parameters(name = "{0}")
     public static Object[][] lionParam(){
        return new Object[][]{
@@ -36,17 +32,19 @@ public class LionParametrizedTests {
        };
     }
 
+    @Before
+    public void init() {
+        MockitoAnnotations.initMocks(this);
+    }
+
     @Test
     public void checkDoesHaveMane() throws Exception{
-        Lion lion = new Lion(sex);
-        Assert.assertEquals(lion.doesHaveMane(), hasMane);
+        Assert.assertEquals("Параметр гривы неверный!", expectHasMane, new Lion(sex).doesHaveMane());
     }
 
     @Test
     public void checkDefaultGetKittens()throws Exception{
-        Lion lion = new Lion(sex);
-        int expectDefaultKittensCount = 1;
-        Assert.assertEquals("Количество котят по-умолчанию неверное!", lion.getKittens(), expectDefaultKittensCount);
+        Assert.assertEquals("Количество котят по-умолчанию неверное!", expectDefaultKittensCount, new Lion(sex).getKittens());
     }
 
     @Mock
@@ -54,9 +52,8 @@ public class LionParametrizedTests {
 
     @Test
     public void checkGetFood() throws Exception {
-        Lion lion = new Lion(sex);
         Mockito.when(feline.eatMeat()).thenReturn(expectFoodList);
-        Assert.assertEquals("Львы такое не едят!", lion.getFood(),expectFoodList);
+        Assert.assertEquals("Львы такое не едят!",expectFoodList, new Lion(sex).getFood());
     }
 
 }

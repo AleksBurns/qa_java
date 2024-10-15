@@ -10,22 +10,20 @@ import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CatTests {
+    private String expectedSound = "Мяу";
+    private List<String> expectFoodList = List.of("Животные", "Птицы", "Рыба");
 
     @Mock
     Feline feline;
 
     @Test
-    public void checkGetSound() {
-        String expectedSound = "Мяу";
-        Cat cat = new Cat(feline);
-        Assert.assertEquals("Мяукают не так!", cat.getSound(), expectedSound);
+    public void checkGetSound() throws Exception{
+        Assert.assertEquals("Мяукают не так!", expectedSound, new Cat(feline).getSound());
     }
 
     @Test
     public void checkGetFood() throws Exception {
-        Cat cat = new Cat(feline);
-        List<String> expectFoodList = List.of("Животные", "Птицы", "Рыба");
         Mockito.when(feline.eatMeat()).thenReturn(expectFoodList);
-        Assert.assertEquals("Коты такое не едят!", cat.getFood(),(expectFoodList));
+        Assert.assertEquals("Коты такое не едят!", expectFoodList, new Cat(feline).getFood());
     }
 }

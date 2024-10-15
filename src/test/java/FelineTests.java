@@ -4,29 +4,28 @@ import org.junit.Test;
 import java.util.List;
 
 public class FelineTests {
-    Feline feline = new Feline();
+    private List<String> expectFoodList = List.of("Животные", "Птицы", "Рыба");
+    private String expectFamily = "Кошачьи";
+    private int expectDefaultKittensCount = 1;
+    private int expectKittensCount = 3;
 
     @Test
     public void checkEatMeat() throws Exception {
-        List<String> expectFoodList = List.of("Животные", "Птицы", "Рыба");
-        Assert.assertEquals("Хищники такое не едят!", feline.eatMeat(), expectFoodList);
+        Assert.assertEquals("Хищники такое не едят!", expectFoodList, new Feline().eatMeat());
     }
 
     @Test
     public void checkGetFamily(){
-        String expectFamily = "Кошачьи";
-        Assert.assertEquals("Неверно указано семейство!", feline.getFamily(),expectFamily);
+        Assert.assertEquals("Неверно указано семейство!", expectFamily, new Feline().getFamily());
     }
 
     @Test
     public void checkDefaultGetKittens(){
-        int expectDefaultKittensCount = 1;
-        Assert.assertEquals("Количество котят по-умолчанию неверное!", feline.getKittens(), expectDefaultKittensCount);
+        Assert.assertEquals("Количество котят по-умолчанию неверное!", expectDefaultKittensCount, new Feline().getKittens());
     }
 
     @Test
     public void checkGetKittens(){
-        int expectKittensCount = 3;
-        Assert.assertEquals("Количество котят неверное!", feline.getKittens(expectKittensCount), expectKittensCount);
+        Assert.assertEquals("Количество котят неверное!", expectKittensCount, new Feline().getKittens(expectKittensCount));
     }
 }

@@ -14,21 +14,21 @@ public class AleksLionTests {
 
     @Test
     public void checkHasMane()throws Exception{
-        Assert.assertEquals("У Алекса должна быть грива!", new AleksLion().doesHaveMane(), expectDoesHaveMane);
+        Assert.assertEquals("У Алекса должна быть грива!", expectDoesHaveMane, new AleksLion().doesHaveMane());
     }
 
     @Test
     public void checkFriendsList()throws Exception{
-        Assert.assertEquals("Список друзей Алекса неверный!", new AleksLion().getFriends(), expectListOfFriends);
+        Assert.assertEquals("Список друзей Алекса неверный!", expectListOfFriends, new AleksLion().getFriends());
     }
 
     @Test
     public void checkAdress() throws Exception{
-        Assert.assertEquals("Лев Алекс живёт не здесь!!", new AleksLion().getPlaceOfLiving(), expectPlaceOfLiving);
+        Assert.assertEquals("Лев Алекс живёт не здесь!!", expectPlaceOfLiving, new AleksLion().getPlaceOfLiving());
     }
 
     @Test
     public void checkKittensCount()throws Exception{
-        Assert.assertEquals("У льва Алекса нет котят!", new AleksLion().getKittens(), expectKittensCount);
+        Assert.assertEquals("У льва Алекса нет котят!", expectKittensCount, new AleksLion().getKittens());
     }
 }
