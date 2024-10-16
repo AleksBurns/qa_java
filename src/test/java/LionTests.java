@@ -22,7 +22,7 @@ public class LionTests {
     public void checkException() throws Exception {
         thrown.expect(Exception.class);
         thrown.expectMessage(expectExceptionText);
-        new Lion("Лев-гермафродит");
+        new Lion("Лев-гермафродит", feline);
         thrown = ExpectedException.none();
     }
 

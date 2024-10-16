@@ -1,10 +1,12 @@
 import com.example.AleksLion;
+import com.example.Feline;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
 
 public class AleksLionTests {
+    Feline feline;
     boolean expectDoesHaveMane = true;
     List<String> expectListOfFriends = List.of("Марти", "Глория", "Мелман");
     String expectPlaceOfLiving = "Нью-Йоркский зоопарк";
@@ -15,21 +17,21 @@ public class AleksLionTests {
 
     @Test
     public void checkHasMane() throws Exception {
-        Assert.assertEquals("У Алекса должна быть грива!", expectDoesHaveMane, new AleksLion().doesHaveMane());
+        Assert.assertEquals("У Алекса должна быть грива!", expectDoesHaveMane, new AleksLion(feline).doesHaveMane());
     }
 
     @Test
     public void checkFriendsList() throws Exception {
-        Assert.assertEquals("Список друзей Алекса неверный!", expectListOfFriends, new AleksLion().getFriends());
+        Assert.assertEquals("Список друзей Алекса неверный!", expectListOfFriends, new AleksLion(feline).getFriends());
     }
 
     @Test
     public void checkAdress() throws Exception {
-        Assert.assertEquals("Лев Алекс живёт не здесь!!", expectPlaceOfLiving, new AleksLion().getPlaceOfLiving());
+        Assert.assertEquals("Лев Алекс живёт не здесь!!", expectPlaceOfLiving, new AleksLion(feline).getPlaceOfLiving());
     }
 
     @Test
     public void checkKittensCount() throws Exception {
-        Assert.assertEquals("У льва Алекса нет котят!", expectKittensCount, new AleksLion().getKittens());
+        Assert.assertEquals("У льва Алекса нет котят!", expectKittensCount, new AleksLion(feline).getKittens());
     }
 }

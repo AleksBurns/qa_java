@@ -41,18 +41,19 @@ public class LionParametrizedTests {
 
     @Test
     public void checkDoesHaveMane() throws Exception {
-        Assert.assertEquals("Параметр гривы неверный!", expectHasMane, new Lion(sex).doesHaveMane());
+        Assert.assertEquals("Параметр гривы неверный!", expectHasMane, new Lion(sex,feline).doesHaveMane());
     }
 
     @Test
     public void checkDefaultGetKittens() throws Exception {
-        Assert.assertEquals("Количество котят по-умолчанию неверное!", expectDefaultKittensCount, new Lion(sex).getKittens());
+        Mockito.when(feline.getKittens()).thenReturn(expectDefaultKittensCount);
+        Assert.assertEquals("Количество котят неверное!", expectDefaultKittensCount, new Lion(sex, feline).getKittens());
     }
 
     @Test
     public void checkGetFood() throws Exception {
         Mockito.when(feline.eatMeat()).thenReturn(expectFoodList);
-        Assert.assertEquals("Львы такое не едят!", expectFoodList, new Lion(sex).getFood());
+        Assert.assertEquals("Львы такое не едят!", expectFoodList, new Lion(sex, feline).getFood());
     }
 
 }
